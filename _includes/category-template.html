@@ -1,0 +1,15 @@
+<section class="articles">
+{% for cate in site.categories %}
+    {% if  include.cate == cate[0] %}
+        {% for post in cate[1] reversed %}
+        <section class="article">
+        <a href="{{ post.url }}">
+            <h2>{{ post.title }}</h2>
+        </a>
+        <p class="post-meta">{{ post.date | date_to_long_string}}</p>
+        <p class="post-description">{{ post.description }}</p>
+        </section>
+        {% endfor %}
+    {% endif %}
+{% endfor %}
+</section>

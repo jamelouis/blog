@@ -1,0 +1,42 @@
+$sky: #caebf2;
+$carbon: #a9a9a9;
+$watermelon: #ff383f;
+$neutral: #efefef;
+
+body {
+    background-color: $neutral;
+    color: black;
+}
+
+header {
+    background-color: $sky;
+}
+
+a {
+    color: $carbon;
+    text-decoration: none;
+}
+
+a:hover {
+    color: $watermelon;
+}
+
+nav {
+    li {
+        border-color: $watermelon;
+    }
+}
+
+.highlight {
+    background: $sky;
+    color: $carbon;
+}
+
+.vertical-align {
+    background: $neutral;
+}
+
+span.articles-count {
+    color: white;
+    background-color: $watermelon;  
+}

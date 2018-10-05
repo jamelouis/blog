@@ -9,6 +9,7 @@ categories: web
 
 * [Interneting is hard][1] - a good resource to learn HTML & CSS
 
-
+* [The Elements of Typographic Style Applied to the Web][2] - font.css
 
 [1]:https://internetingishard.com/
+[2]:http://webtypography.net/

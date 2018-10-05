@@ -35,12 +35,33 @@ categories: web
 * The &lt;section&gt; element is sort of like an &lt;article&gt;, except it doesn't need to make sense outside the context of the document.
 * The &lt;nav&gt; element lets you mark up the various navigation sections of your website.
 
+## 高质量的CSS
+
+* 怪异模式模拟老式浏览器的行为以防止老站点无法工作
+* DTD(Document Type Definition): 文档类型定义
+* 通过设定特定的DTD来触发浏览器的怪异模式
+* CSS组织
+    * 控制字体的CSS集中在font.css
+    * 控制颜色的cSS集中在color.css
+    * 控制布局的CSS集中在layout.css
+* 作者推荐：base.css + common.css + page.css
+    * base： 提供CSS reset功能和粒度最小的通用类 -- 原子类
+    * common：提供组件级类
+    * page：提供页面级的样式
+* 模块与模块之间尽量不要包含相同的部分，如果有相同部分，应将它们提取出来，拆分成一个独立的模块
+* 模块应在保证数量尽可能少的原则下，做到尽可能简单，以提高重用性
+* 骆驼命名法用于区别不同单词，划线用于表明从属关系
+* 低权重原则 -- 避免滥用子选择器
+* 当不同选择符的样式设置有冲突时，会采用权重高的选择符设置样式
+* 如果CSS选择符权重相同，那么样式会遵循就近原则，哪个选择符最后定义，就采用哪个选择符的样式
+
+###  [The Elements of Typographic Style Applied to the Web][3]
 
 
 
 [1]:https://internetingishard.com/html-and-css/semantic-html/
 [2]:https://gsnedders.html5.org/outliner/
-
+[3]:http://webtypography.net/
 
 
 

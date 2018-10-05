@@ -1,8 +1,10 @@
-
 * {
     box-sizing: border-box;
 }
 
+section, article, aside, footer, header, nav {
+    display: block;
+  }
 
 header {
     background-color: rgb(61, 79, 93);
@@ -13,7 +15,6 @@ header {
 
 header h1 {
     font-size: 3em;
-
     border-radius: 3em;
     padding: 0.2em;
     margin: 0.2em;
@@ -29,25 +30,30 @@ header p {
 a {
     text-decoration: none;
 }
-.info li {
-    background: #3c67a3;
-    border-bottom: thin gray solid;
-    margin-bottom: 0.2em;
-    padding: 0.6em;
-}
+nav {
+    li {
+        background: #3c67a3;
+        border-bottom: thin gray solid;
+        margin-bottom: 0.2em;
+        padding: 0.6em;
+    }
+    
+    li a {
+        text-align: right;
+        color: white;
+        text-decoration: none;
+        font-size: 1.2em;
+        font-weight: bold;
+        line-height: 1.2em;
+    }
 
-.info li a {
-    text-align: right;
-    color: white;
-    text-decoration: none;
-    font-size: 1.2em;
-    font-weight: bold;
-    line-height: 1.2em;
+    li a:hover {
+        color: rgb(138, 55, 55);
+    }
 }
+ 
 
-.info li a:hover {
-    color: rgb(138, 55, 55);
-}
+
 
 .topic {
 
@@ -79,13 +85,16 @@ h2 {
     color: black;
 }
 
-
+h3 {
+    font-weight: bolder;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
 /* Layout */
-.info {
+.vertical-align-whole-page {
     padding: 1em;
     margin: 50vh auto 0;
     transform: translateY(-50%);
-
 }
 
 .content {
@@ -162,7 +171,7 @@ h4 {
     margin-bottom: 15px;
 }
 
-p.post-meta {
+.post-meta {
     color: rgb(143, 129, 129);
 }
 
@@ -184,18 +193,20 @@ span.articles-count {
 }
 
 .vertical-align {
-    transform: translateY(-50%);
     background: #4d85d1;
     padding: 20px 15px 20px 15px;
     border-radius: 100px;
+    font-size: 3em;
+    font-weight: bold;
+    display: block;
 }
 
 @media screen and (max-width: 900px) {
-    .info {
+    .vertical-align-whole-page {
         margin: auto;
         transform: translateY(0);
     }
-    .info li {
+    nav li {
         display: inline-block;
         padding: 8px;
     }

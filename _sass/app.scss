@@ -6,3 +6,17 @@ header p {
     font-weight: bold;
     margin: 0;
 }
+
+/*
+https://codepen.io/jamelouis/pen/OBXKqZ
+*/
+.vertical-align {
+    font-size: 48px;
+    width: 160px;
+    height: 160px - (160px - 48px) / 2;
+    border-radius: 80px;
+    text-align: center;
+    padding-top: (160px - 48px) / 2;
+    display: inline-block;
+    box-sizing: content-box;
+}

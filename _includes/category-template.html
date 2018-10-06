@@ -3,7 +3,7 @@
     {% if  include.cate == cate[0] %}
         {% for post in cate[1] reversed %}
         <article>
-        <a href="{{ post.url }}">
+        <a href="{{ post.url | relative_url}}">
             <h2>{{ post.title }}</h2>
         </a>
         <time class="post-meta" datetime='{{ post.date }}'>{{ post.date | date_to_long_string }}</time>

@@ -19,7 +19,7 @@ description: 在眼睛生理学中，适应是眼睛适应各种不同层次明�
 EyeAdaption可以分为[Dark Adaptation]和[Light Adaptation], 分别是指从明到暗与从暗到明的适应过程。从生物学层面分析，人眼感受光线的范围很大，但在任意时刻只能感受相对小的范围。
 感官组织cones和rods对光线的不同适应能力，导致人眼适应昏暗的时间比适应明亮的时间要长很多([Adaptation(eye) - wikipedia],[Dark Adaptation])。
 
-![Visual Response to Darkness](/assets/images/eye_adaptation/dark_adaptation.png "Visual Response to Darkness - wikipedia")
+![Visual Response to Darkness]({{ "/assets/images/eye_adaptation/dark_adaptation.png" | relative_url}} "Visual Response to Darkness - wikipedia")
 
 
 ## EyeAdaption In game
@@ -30,7 +30,7 @@ EyeAdaption可以分为[Dark Adaptation]和[Light Adaptation], 分别是指从�
 >
 >Standard approach to automatic exposure is to compute scene's geometric mean of luminance(log2 average) and map it to some "key value"：
 >
->![Exposure Calculation](/assets/images/eye_adaptation/4.svg "Exposure Calculation")
+>![Exposure Calculation]({{ "/assets/images/eye_adaptation/4.svg" | relative_url}} "Exposure Calculation")
 >
 >Then we multiply all pixels by exposure, add tone mapping, color grading and gama.
 
@@ -43,7 +43,7 @@ EyeAdaption可以分为[Dark Adaptation]和[Light Adaptation], 分别是指从�
 
 > In Krzysztof Narkowicz [Automatic exposure - knarkowicz] blog:
 >
-> ![Temporal Adaptation](/assets/images/eye_adaptation/1.svg "Temporal Adaptation")
+> ![Temporal Adaptation]({{"/assets/images/eye_adaptation/1.svg"|relative_url}} "Temporal Adaptation")
 
 > 时间适应
 >
@@ -51,22 +51,22 @@ EyeAdaption可以分为[Dark Adaptation]和[Light Adaptation], 分别是指从�
 
 ### Auto Exposure Mathematic Model
 
-* ![Auto Exposure](/assets/images/eye_adaptation/5.svg "Exposure")
+* ![Auto Exposure]({{"/assets/images/eye_adaptation/5.svg"|relative_url}} "Exposure")
 
-* ![Exposure Calculation](/assets/images/eye_adaptation/4.svg "Exposure Calculation")
+* ![Exposure Calculation]({{"/assets/images/eye_adaptation/4.svg"|relative_url}} "Exposure Calculation")
 
-* ![cache old luminance](/assets/images/eye_adaptation/3.svg "Cache Old Luminance")
+* ![cache old luminance]({{"/assets/images/eye_adaptation/3.svg"|relative_url}} "Cache Old Luminance")
 
-* ![Temporal Adaptation](/assets/images/eye_adaptation/2.svg "Temporal Adaptation")
+* ![Temporal Adaptation]({{"/assets/images/eye_adaptation/2.svg"|relative_url}} "Temporal Adaptation")
 
-* ![Average Luminance](/assets/images/eye_adaptation/6.svg "Average Luminance")
+* ![Average Luminance]({{"/assets/images/eye_adaptation/6.svg"|relative_url}} "Average Luminance")
 
 其中，*KeyValue*的默认值常设置为0.18([Middle gray - wikipedia]); 
 *speed*的取值在从明到暗或暗到明的过程中取值不一样，一般从明到暗的数值会比从暗到明的数值小。
 
 ## EyeAdaptation in UE4
 
-![Eye Adaptation in UE4](/assets/images/eye_adaptation/eye_adaptation_in_ue4.gif "Eye Adaptation in UE4")
+![Eye Adaptation in UE4]({{"/assets/images/eye_adaptation/eye_adaptation_in_ue4.gif"|relative_url}} "Eye Adaptation in UE4")
 
 Eye Adaptation in UE4中，当相机进入椅子的阴影时，画面的明度缓缓的发生变化。当相机从阴影中出来，画面的明度较快的恢复到之前的明暗度。
 

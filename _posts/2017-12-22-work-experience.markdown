@@ -141,16 +141,16 @@ msg = ''.join(t[1:]).strip()
 ### 图表化提交历史数据 ###
 
 提交次数的按月份分布如下图：
-![my commits](/assets/images/work_experience/my_commit.jpg "my commits")
+![my commits]({{"/assets/images/work_experience/my_commit.jpg"|relative_url}} "my commits")
 
 在两年里，提交了477次左右，占总提交的1.7%。
-![commits](/assets/images/work_experience/commits.png "commits")
+![commits]({{"/assets/images/work_experience/commits.png"|relative_url}} "commits")
 
 
 
 两年内的提交按功能的散列图如下：
 
-![module time line](/assets/images/work_experience/time-line.png "module time line")
+![module time line]({{"/assets/images/work_experience/time-line.png"|relative_url}} "module time line")
 
 由图可以清晰的看出，早期是从postprocess开始的，那时跟一个大大再搞一个real-time composition，大大负责整体框架的构建，大大指导我在
 框架里添砖加瓦，aa,dof，bokeh,lensflare,tone mappint, color grade, xdog等等相关的后期效果都倒腾了一番。期间，一个前辈丢了个shadow的锅给我们组，自己跑去专研地形渲染。

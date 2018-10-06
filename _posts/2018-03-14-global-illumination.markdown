@@ -7,11 +7,11 @@ categories: computer-graphics
 
 最近，花了一点时间调研了实时动态GI的技术，下面是调研过程中的一点收获。
 
-![Global_illumination](/assets/images/global_illumination/gi_gicourse2010.jpg "gi_gicourse2010")
+![Global_illumination]({{"/assets/images/global_illumination/gi_gicourse2010.jpg"|relative_url}} "gi_gicourse2010")
 
 根据[Wikipedia]，上图红色框内的光被红色的书籍反射到龙模型和桌上水杯的焦散就是Global Illumination。接着，来看看计算机渲染的GI效果图。
 
-![NVIDIA VXGI](/assets/images/global_illumination/ue_vxgi.jpg "NVIDIA VXGI")
+![NVIDIA VXGI]({{"/assets/images/global_illumination/ue_vxgi.jpg"|relative_url}} "NVIDIA VXGI")
 
 上图是NVidia的VXGI的效果图。接下来，看看UE和CE两大商业引擎在动态GI上的策咯。
 
@@ -26,8 +26,8 @@ LPV's GI是CryEngine研发出来实现动态GI的。目前，CryEngine用了一�
 
 SVOGI舍去的原因可以参考UE的论坛话题[svogi]。[svogi]里有许多干货，如:
 
-![svogi](/assets/images/global_illumination/ue_svogi.jpg "SVO")
-![GI Tech Compare](/assets/images/global_illumination/gi_tech_compare.jpg "GI Tech Compare")
+![svogi]({{"/assets/images/global_illumination/ue_svogi.jpg"|relative_url}} "SVO")
+![GI Tech Compare]({{"/assets/images/global_illumination/gi_tech_compare.jpg"|relative_url}} "GI Tech Compare")
 
 对于想研究动态GI技术的人而言，目前svoti技术会比较适合。因为CE源码开源了，理论相关的学术论文也很容易在网上下载到。
 

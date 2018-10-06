@@ -9,8 +9,8 @@ description: visualizehdr是用来查看hdr信息的调试功能。
 
 ## What's VisualizeHDR in UE4
 
-![UE VisualHDR Off](/assets/images/visualizehdr/visualize_hdr_origin.jpg "UE VisualHDR Off")
-![UE VisualHDR On](/assets/images/visualizehdr/visualize_hdr_ue4.gif "UE VisualHDR On")
+![UE VisualHDR Off]({{ "/assets/images/visualizehdr/visualize_hdr_origin.jpg" | relative_url }} "UE VisualHDR Off")
+![UE VisualHDR On]({{ "/assets/images/visualizehdr/visualize_hdr_ue4.gif" | relative_url }} "UE VisualHDR On")
 
 图一是官方的一个SciFiHallway场景。图二是SciFiHallway场景开启visualizehdr后的动效图。
 
@@ -96,7 +96,7 @@ UE4先计算出十字标志的掩码，取值(0,1)，如果是0，保持原来�
 **显示hdr的明度，rgb各通道数值**。UE4中使用了一个高为8个像素的minifont掩码纹理，该纹理里包含了A-Z字母和一些基本的常用符号，其中每个字符的宽度也是8个像素宽。即minifont中，
 每个字符掩码由8x8区域表示。
 
-![UE VisualHDR Off](/assets/images/visualizehdr/digits_and_capital_letters.png "MiniFont Texture")
+![UE VisualHDR Off]({{ "/assets/images/visualizehdr/digits_and_capital_letters.png" | relative_url}} "MiniFont Texture")
 
 ```
 /// MiniFontCommon.usf: 
@@ -206,7 +206,7 @@ if(abs(InsetPx.x - ValuePx) < 2 && PixelPos.y > HistogramLeftTop.y + 9)
 UE4的VisualizeHDR里，很有趣的是miniFont的调试功能，对于coder而言，能直观的看到像素的真实数值带来很多的好处。
 美中不足的是，只能查看中间像素的数值。[HDR Display Nvidia](https://developer.nvidia.com/high-dynamic-range-display-development)的
 SDk是根据鼠标位置来显示当前片段的相关数值。
-![HDR Display Nvidia](/assets/images/visualizehdr/hdr_display_nvidia.gif "HDR Display Nvidia")
+![HDR Display Nvidia]({{ "/assets/images/visualizehdr/hdr_display_nvidia.gif" | relative_url}} "HDR Display Nvidia")
 
 ## References
 

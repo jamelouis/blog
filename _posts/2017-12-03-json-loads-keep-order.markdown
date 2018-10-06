@@ -67,7 +67,7 @@ if __name__ == '__main__':
 
 结果对比如图:
 
-![python-json-loads-keep-order](/assets/images/python/python-json-loads-keep-order/python-json-loads-keep-order.jpg "python-json-loads-keep-order")
+![python-json-loads-keep-order]({{"/assets/images/python/python-json-loads-keep-order/python-json-loads-keep-order.jpg"|relative_url}} "python-json-loads-keep-order")
 
 ## Reference
 * [豆瓣API快速入门](https://developers.douban.com/wiki/?title=guide)

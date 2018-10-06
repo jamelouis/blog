@@ -31,7 +31,7 @@ categories: python
 #### Subdomains提起
 Google浏览器调试分析得出：
 
-![Subdomains](/assets/images/hackerrank/subdomains.jpg "subdomains")
+![Subdomains]({{"/assets/images/hackerrank/subdomains.jpg"|relative_url}} "subdomains")
 
 ```python
 def get_subdomain(html):
@@ -41,8 +41,8 @@ def get_subdomain(html):
 #### Challenges提起
 
 Google浏览器调试分析得出：
-![Challenges](/assets/images/hackerrank/challenge.jpg "challenge")
-![pages](/assets/images/hackerrank/pages.jpg "pages")
+![Challenges]({{"/assets/images/hackerrank/challenge.jpg"|relative_url}} "challenge")
+![pages]({{"/assets/images/hackerrank/pages.jpg"|relative_url}} "pages")
 
 ```python
 def get_problems(html):
@@ -74,18 +74,18 @@ def get_problems(html):
 
 csv文件一般都被各个表格软件兼容。用excel软件打开，简单操作生成如下的bar图，pie图。
 
-![excel bar pie图](/assets/images/hackerrank/excel-bar-pie.jpg "Excel bar pie图")
+![excel bar pie图]({{"/assets/images/hackerrank/excel-bar-pie.jpg"|relative_url}} "Excel bar pie图")
 
 由图可知，Fundamental下有20道Easy难度，3道Hard难度，9道Medium难度。各占63%,9%,28%。
 
 先前，各个不同的**Subdomains**各自存在各自的csv文件中，因此可以用python脚本化图表化过程。
 
-![fundamentals](/assets/images/hackerrank/fundamentals.png "Efundamentals")
+![fundamentals]({{"/assets/images/hackerrank/fundamentals.png"|relative_url}} "Efundamentals")
 
 ## 规划
 
 由图表化中得，[mathematics]的challenges概览如下图：
-![mathematic](/assets/images/hackerrank/mathematic.png "mathematic")
+![mathematic]({{"/assets/images/hackerrank/mathematic.png"|relative_url}} "mathematic")
 
 Easy难度的有45, Medium难度的有102，Hard难度的有80，Advanced难度的有29.
 

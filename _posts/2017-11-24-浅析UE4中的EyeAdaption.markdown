@@ -14,33 +14,33 @@ description: UE4是采用基于Histogram的方法来计算
 
 #### Auto Exposure Mathematic Model
 
-* ![Auto Exposure](/assets/images/eye_adaptation/5.svg "Exposure")
+* ![Auto Exposure]({{"/assets/images/eye_adaptation/5.svg"|relative_url}} "Exposure")
 
-* ![Exposure Calculation](/assets/images/eye_adaptation/4.svg "Exposure Calculation")
+* ![Exposure Calculation]({{"/assets/images/eye_adaptation/4.svg"|relative_url}} "Exposure Calculation")
 
-* ![cache old luminance](/assets/images/eye_adaptation/3.svg "Cache Old Luminance")
+* ![cache old luminance]({{"/assets/images/eye_adaptation/3.svg"|relative_url}} "Cache Old Luminance")
 
-* ![Temporal Adaptation](/assets/images/eye_adaptation/2.svg "Temporal Adaptation")
+* ![Temporal Adaptation]({{"/assets/images/eye_adaptation/2.svg"|relative_url}} "Temporal Adaptation")
 
-* ![Average Luminance](/assets/images/eye_adaptation/6.svg "Average Luminance")
+* ![Average Luminance]({{"/assets/images/eye_adaptation/6.svg"|relative_url}} "Average Luminance")
 
 在[EyeAdaption - Overview]中，我们总结了EyeAdaptation的Mathematic Model。通过阅读UE4的Source Code，整体的EyeAdaption的过程大致一样，
 只是在计算平均亮度值之一块有较大的差异。
 
 #### Auto Exposure in UE4
 
-* ![Auto Exposure](/assets/images/eye_adaptation/5.svg "Exposure")
+* ![Auto Exposure]({{"/assets/images/eye_adaptation/5.svg"|relative_url}} "Exposure")
 
-* ![Exposure Calculation](/assets/images/eye_adaptation/7.svg "Exposure Calculation")
+* ![Exposure Calculation]({{"/assets/images/eye_adaptation/7.svg"|relative_url}} "Exposure Calculation")
 
-* ![cache old luminance](/assets/images/eye_adaptation/3.svg "Cache Old Luminance")
+* ![cache old luminance]({{"/assets/images/eye_adaptation/3.svg"|relative_url}} "Cache Old Luminance")
 
-* ![Temporal Adaptation](/assets/images/eye_adaptation/11.svg "Temporal Adaptation")
-* ![Temporal Adaptation](/assets/images/eye_adaptation/10.svg "Temporal Adaptation")
-* ![Temporal Adaptation](/assets/images/eye_adaptation/9.svg "Temporal Adaptation")
-* ![Temporal Adaptation](/assets/images/eye_adaptation/8.svg "Temporal Adaptation")
+* ![Temporal Adaptation]({{"/assets/images/eye_adaptation/11.svg"|relative_url}} "Temporal Adaptation")
+* ![Temporal Adaptation]({{"/assets/images/eye_adaptation/10.svg"|relative_url}} "Temporal Adaptation")
+* ![Temporal Adaptation]({{"/assets/images/eye_adaptation/9.svg"|relative_url}} "Temporal Adaptation")
+* ![Temporal Adaptation]({{"/assets/images/eye_adaptation/8.svg"|relative_url}} "Temporal Adaptation")
 
-* ![Average Luminance](/assets/images/eye_adaptation/12.svg "Average Luminance")
+* ![Average Luminance]({{"/assets/images/eye_adaptation/12.svg"|relative_url}} "Average Luminance")
 
 在UE4中，计算平均中灰值的方式是基于histogram的，并且多了个曝光补偿因子来控制最终的曝光值。
 
@@ -67,7 +67,7 @@ float4 EyeAdaptationParams[3];
 
 #### Eye Adaptation
 
-![Auto Exposure](/assets/images/eye_adaptation/5.svg "Exposure")
+![Auto Exposure]({{"/assets/images/eye_adaptation/5.svg"|relative_url}} "Exposure")
 
 ```
 /// PostProcessTonemap.usf
@@ -89,13 +89,13 @@ LinearColor *= ExposureScale;
 
 #### Temporal Adaptation
 
-![Temporal Adaptation](/assets/images/eye_adaptation/11.svg "Temporal Adaptation")
+![Temporal Adaptation]({{"/assets/images/eye_adaptation/11.svg"|relative_url}} "Temporal Adaptation")
 
-![Temporal Adaptation](/assets/images/eye_adaptation/10.svg "Temporal Adaptation")
+![Temporal Adaptation]({{"/assets/images/eye_adaptation/10.svg"|relative_url}} "Temporal Adaptation")
 
-![Temporal Adaptation](/assets/images/eye_adaptation/9.svg "Temporal Adaptation")
+![Temporal Adaptation]({{"/assets/images/eye_adaptation/9.svg"|relative_url}} "Temporal Adaptation")
 
-![Temporal Adaptation](/assets/images/eye_adaptation/8.svg "Temporal Adaptation")
+![Temporal Adaptation]({{"/assets/images/eye_adaptation/8.svg"|relative_url}} "Temporal Adaptation")
 
 ```
 /// PostProcessEyeAdaptation.usf
@@ -121,7 +121,7 @@ float ComputeEyeAdaptation(float OldExposure, float TargetExposure, float FrameT
 
 #### Exposure Calculation 
 
-![Exposure Calculation](/assets/images/eye_adaptation/7.svg "Exposure Calculation")
+![Exposure Calculation]({{"/assets/images/eye_adaptation/7.svg"|relative_url}} "Exposure Calculation")
 
 ```
 /// PostProcessEyeAdaptation.usf
@@ -161,7 +161,7 @@ float2 MainEyeAdaptationCommon()
 
 #### Average Luminance
 
-![Average Luminance](/assets/images/eye_adaptation/12.svg "Average Luminance")
+![Average Luminance]({{"/assets/images/eye_adaptation/12.svg"|relative_url}} "Average Luminance")
 
 ```
 /// PostProcessHistogramCommon.usf

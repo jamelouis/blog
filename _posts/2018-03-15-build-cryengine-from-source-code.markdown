@@ -38,7 +38,7 @@ SVOTI(动态全局光照)是CryEngine里一个亮点。为了一窥SVOTI的真�
 5. 接下来，就是耐心的看代码
 
 最终跑起来的画面如下：
-![SVOTI](/assets/images/global_illumination/ce_svoti.jpg "SVOTI")
+![SVOTI]({{"/assets/images/global_illumination/ce_svoti.jpg"|relative_url}} "SVOTI")
 
 ## 小结 ##
 

@@ -23,7 +23,7 @@ categories: python
 
 基本上是重载内存分配的操作，并把调试信息内嵌到新的重载操作。参考[chasing static memory leaks]。
 
-![memory leak](/assets/images/memory_leak/mem-leak-output.jpg "memory leak")
+![memory leak]({{"/assets/images/memory_leak/mem-leak-output.jpg"|relative_url}} "memory leak")
 
 ### 自定内存分配策略的调试支持 ###
 
@@ -33,7 +33,7 @@ categories: python
 
 **vld库**。一般需要将vld.h文件包含到项目里，重新编译后，运行程序即可。
 
-![memory leak](/assets/images/memory_leak/vld_output.jpg "memory leak")
+![memory leak]({{"/assets/images/memory_leak/vld_output.jpg"|relative_url}} "memory leak")
 
 **Deleaker**。商业收费软件。
 
@@ -54,8 +54,8 @@ Visual Studio支持当遇到d3d调试信息中断的机制。需要配置一下d
 当遇到第一个中断类型的信息时，程序会中断下来。
 
 
-![dx panel](/assets/images/memory_leak/dx-panel.jpg "dx panel")
-![dx panel break](/assets/images/memory_leak/dx-panel-break.jpg "dx panel break")
+![dx panel]({{"/assets/images/memory_leak/dx-panel.jpg"|relative_url}} "dx panel")
+![dx panel break]({{"/assets/images/memory_leak/dx-panel-break.jpg"|relative_url}} "dx panel break")
 
 ## 小结 ##
 

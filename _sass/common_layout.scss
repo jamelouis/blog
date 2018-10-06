@@ -134,3 +134,13 @@ header {
         overflow-x: hidden;
     }
 }
+
+@media screen and (max-width: 380px) {
+    header {
+        height: 360px;
+    }
+    .content {
+        padding-left: 1em;
+        padding-right: 1em;
+    }
+}

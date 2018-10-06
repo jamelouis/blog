@@ -13,12 +13,13 @@ header {
 }
 
 a {
-    color: $carbon;
+    color: $watermelon;
     text-decoration: none;
 }
 
 a:hover {
-    color: $watermelon;
+    color: $carbon;
+    background: $watermelon;
 }
 
 nav {
@@ -39,4 +40,8 @@ nav {
 span.articles-count {
     color: white;
     background-color: $watermelon;  
+}
+
+header p {
+    color: $carbon;
 }

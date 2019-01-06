@@ -4,6 +4,8 @@
   desc: python笔记，用python解决个人生活或工作中遇到的问题。
 - name: web
   desc: web开发笔记
+- name: machine-learning
+  desc: Machine Learning
 - name: coding
   desc: 编码，算法相关笔记
 - name: misc

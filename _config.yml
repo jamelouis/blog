@@ -27,6 +27,10 @@ header_pages:
   - about.md
   - archive.md
 
+disqus:
+    shortname: jamelouis-github-io
+
+
 pagination:
   enabled: true
   per_page: 5

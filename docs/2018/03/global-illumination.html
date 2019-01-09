@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Global Illumination(全局光照) | Blog</title>
+<meta name="generator" content="Jekyll v3.6.3" />
+<meta property="og:title" content="Global Illumination(全局光照)" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="最近，花了一点时间调研了实时动态GI的技术，下面是调研过程中的一点收获。" />
+<meta property="og:description" content="最近，花了一点时间调研了实时动态GI的技术，下面是调研过程中的一点收获。" />
+<link rel="canonical" href="http://localhost:4000/blog/2018/03/global-illumination.html" />
+<meta property="og:url" content="http://localhost:4000/blog/2018/03/global-illumination.html" />
+<meta property="og:site_name" content="Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-03-14T11:03:31+08:00" />
+<script type="application/ld+json">
+{"description":"最近，花了一点时间调研了实时动态GI的技术，下面是调研过程中的一点收获。","@type":"BlogPosting","url":"http://localhost:4000/blog/2018/03/global-illumination.html","headline":"Global Illumination(全局光照)","dateModified":"2018-03-14T11:03:31+08:00","datePublished":"2018-03-14T11:03:31+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog/2018/03/global-illumination.html"},"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/blog/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/blog/feed.xml" title="Blog" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/blog/">Blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/blog/about/">About</a><a class="page-link" href="/blog/Archive/">Archive</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Global Illumination(全局光照)</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2018-03-14T11:03:31+08:00" itemprop="datePublished">Mar 14, 2018
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>最近，花了一点时间调研了实时动态GI的技术，下面是调研过程中的一点收获。</p>
+
+<p><img src="/blog/assets/images/global_illumination/gi_gicourse2010.jpg" alt="Global_illumination" title="gi_gicourse2010" /></p>
+
+<p>根据<a href="https://en.wikipedia.org/wiki/Global_illumination">Wikipedia</a>，上图红色框内的光被红色的书籍反射到龙模型和桌上水杯的焦散就是Global Illumination。接着，来看看计算机渲染的GI效果图。</p>
+
+<p><img src="/blog/assets/images/global_illumination/ue_vxgi.jpg" alt="NVIDIA VXGI" title="NVIDIA VXGI" /></p>
+
+<p>上图是NVidia的VXGI的效果图。接下来，看看UE和CE两大商业引擎在动态GI上的策咯。</p>
+
+<p>UE4用Lightmass来实现静态GI,LPV实现动态GI。 LPV动态GI目前还处于开发阶段。
+早期的UE4用了SVOGI技术实现了效果明显的动态GI，但由于一些原因，SVOGI被舍去了。
+UE4’s GI的第三插件有<a href="https://developer.nvidia.com/vxgi">NVIDIA VXGI</a>和<a href="https://www.unrealengine.com/en-US/showcase/enlighten-real-time-global-illumination-in-unreal-engine-4?sessionInvalidated=true">Enlighten</a>。</p>
+
+<p>LPV’s GI是CryEngine研发出来实现动态GI的。目前，CryEngine用了一个SVOTI来实现动态GI。
+相对于其他动态GI技术，SVOTI在性能和效果上都很有优势。</p>
+
+<p><a href="https://extremeistan.wordpress.com/2014/05/11/realtime-global-illumination-techniques-collection/">extremeistan blog</a>收集很多实时GI渲染的连接，有兴趣可以去看看。</p>
+
+<p>SVOGI舍去的原因可以参考UE的论坛话题<a href="https://forums.unrealengine.com/unreal-engine/feedback-for-epic/659-svogi">svogi</a>。<a href="https://forums.unrealengine.com/unreal-engine/feedback-for-epic/659-svogi">svogi</a>里有许多干货，如:</p>
+
+<p><img src="/blog/assets/images/global_illumination/ue_svogi.jpg" alt="svogi" title="SVO" />
+<img src="/blog/assets/images/global_illumination/gi_tech_compare.jpg" alt="GI Tech Compare" title="GI Tech Compare" /></p>
+
+<p>对于想研究动态GI技术的人而言，目前svoti技术会比较适合。因为CE源码开源了，理论相关的学术论文也很容易在网上下载到。</p>
+
+<p>注：以上图片皆来源于资源连接里。</p>
+
+<h2 id="参考">参考</h2>
+
+<ul>
+  <li><a href="https://en.wikipedia.org/wiki/Global_illumination">Wikipedia - Global Illumination</a></li>
+  <li><a href="http://cgg.mff.cuni.cz/~jaroslav/gicourse2010/">Global Illumination Across Industries</a></li>
+  <li><a href="https://developer.nvidia.com/vxgi">NVIDIA VXGI</a></li>
+  <li><a href="https://docs.unrealengine.com/en-us/Engine/Rendering/LightingAndShadows/Lightmass">Unreal - Lightmass Global Illumination</a></li>
+  <li><a href="https://docs.unrealengine.com/en-us/Engine/Rendering/LightingAndShadows/LightPropagationVolumes">Unreal - Light Propagation Volumes</a></li>
+  <li><a href="https://www.unrealengine.com/en-US/showcase/enlighten-real-time-global-illumination-in-unreal-engine-4?sessionInvalidated=true">Unreal - Enlighten</a></li>
+  <li><a href="http://www.crytek.com/cryengine/cryengine3/presentations/light-propagation-volumes-in-cryengine-3">CryEngine 3 - Light Propagation Volumes in CryEngine 3</a></li>
+  <li><a href="http://docs.cryengine.com/display/CEMANUAL/Voxel-Based+Global+Illumination">CryEngine 3 - Voxel-Based Global Illumination</a></li>
+  <li><a href="https://extremeistan.wordpress.com/2014/05/11/realtime-global-illumination-techniques-collection/">extremeistan blog- Realtime Global Illumination techniques collection</a></li>
+</ul>
+
+
+  </div><a class="u-url" href="/blog/2018/03/global-illumination.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/blog/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Blog</li><li><a class="u-email" href="mailto:jamelouis2015@gmail.com">jamelouis2015@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/jamelouis"><svg class="svg-icon"><use xlink:href="/blog/assets/minima-social-icons.svg#github"></use></svg> <span class="username">jamelouis</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Jame Louis&#39;s Blog。</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

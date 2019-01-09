@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Work Experience | Blog</title>
+<meta name="generator" content="Jekyll v3.6.3" />
+<meta property="og:title" content="Work Experience" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="概述" />
+<meta property="og:description" content="概述" />
+<link rel="canonical" href="http://localhost:4000/blog/2017/12/work-experience.html" />
+<meta property="og:url" content="http://localhost:4000/blog/2017/12/work-experience.html" />
+<meta property="og:site_name" content="Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-12-22T22:03:31+08:00" />
+<script type="application/ld+json">
+{"description":"概述","@type":"BlogPosting","url":"http://localhost:4000/blog/2017/12/work-experience.html","headline":"Work Experience","dateModified":"2017-12-22T22:03:31+08:00","datePublished":"2017-12-22T22:03:31+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog/2017/12/work-experience.html"},"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/blog/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/blog/feed.xml" title="Blog" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/blog/">Blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/blog/about/">About</a><a class="page-link" href="/blog/Archive/">Archive</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Work Experience</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2017-12-22T22:03:31+08:00" itemprop="datePublished">Dec 22, 2017
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h2 id="概述">概述</h2>
+
+<p>进入职场两年半了，至此年末，想知道这两年半的工作都做了什么？作为一名开发人员，
+每天都会用版本管理软件svn,perfoce来提交工作信息。因此，可以
+从这些项目版本管理软件中提取出历史的提交信息来作为分析的数据，再根据自身维护的
+功能模块的关键词来显示功能提交的时间线。</p>
+
+<p>大致的过程如下：</p>
+
+<ol>
+  <li>从svn,p4v提取提交历史到文本文件</li>
+  <li>归一化数据到统一的csv文件中</li>
+  <li>图表化提交历史数据</li>
+</ol>
+
+<h3 id="从svnp4v提取提交历史到文本文件">从svn,p4v提取提交历史到文本文件</h3>
+
+<h4 id="从p4v提取提交历史到文本文件">从p4v提取提交历史到文本文件</h4>
+
+<p>svn提供了很便捷的log导出命令，导出可以是文本格式或者xml。因为文本格式的数据的结构
+没有xml来得清晰，为了便于接下来的数据预处理，这里选择导出格式xml。</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>svn log --xml &gt;&gt; log_svn.xml
+</code></pre></div></div>
+
+<p>svn导出的xml文件的内容大致如下：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;log&gt;</span>
+<span class="nt">&lt;logentry</span>
+   <span class="na">revision=</span><span class="s">"1"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;author&gt;</span>zhangsan<span class="nt">&lt;/author&gt;</span>
+<span class="nt">&lt;date&gt;</span>2017-12-13T14:06:33.374887Z<span class="nt">&lt;/date&gt;</span>
+<span class="nt">&lt;msg&gt;</span>hello,world<span class="nt">&lt;/msg&gt;</span>
+<span class="nt">&lt;/logentry&gt;</span>
+...
+<span class="nt">&lt;/log&gt;</span>
+</code></pre></div></div>
+
+<h4 id="从p4v提取提交历史到文本文件-1">从p4v提取提交历史到文本文件</h4>
+<p>Google了一下，p4v的提交历史可以用如下的命令导出。</p>
+
+<pre><code class="language-p4v">p4 changelists -l
+</code></pre>
+
+<p>p4v导出的信息如下：</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Change 1 on 2017/12/14 by zhangsan@email.com
+
+	hello,world
+</code></pre></div></div>
+
+<h3 id="归一化数据到统一的csv文件中">归一化数据到统一的csv文件中</h3>
+
+<p>提交历史信息分别来源于版本管理软件svn和perforce。数据导出的格式一个是xml,一个是文本。
+在图表化之前，需要归一化提交历史信息。<a href="https://en.wikipedia.org/wiki/Comma-separated_values">CSV</a>是一个结构性清晰，而且被很多商业软件支持的文件格式。
+因此,选择csv作为归一化数据的文本格式，每一项由(author,date,msg)构成。</p>
+
+<h4 id="svn-to-csv">svn to csv</h4>
+
+<p>python读取xml格式的文件相当容易。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span>  <span class="nn">xml.etree.ElementTree</span> <span class="k">as</span> <span class="n">ET</span>
+
+<span class="k">def</span> <span class="nf">data_preprocess_for_svn</span><span class="p">():</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">'log_svn.csv'</span><span class="p">,</span> <span class="s">'w'</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s">'utf-8'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">'author,date,msg</span><span class="se">\n</span><span class="s">'</span><span class="p">)</span>
+        <span class="n">tree</span> <span class="o">=</span> <span class="n">ET</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s">'log_svn.xml'</span><span class="p">)</span>
+        <span class="n">root</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">getroot</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">root</span><span class="p">:</span>
+            <span class="n">author</span>  <span class="o">=</span> <span class="s">''</span>
+            <span class="n">date</span>    <span class="o">=</span> <span class="s">''</span>
+            <span class="n">msg</span>     <span class="o">=</span> <span class="s">''</span>
+            <span class="k">for</span> <span class="n">subchild</span> <span class="ow">in</span> <span class="n">child</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">subchild</span><span class="o">.</span><span class="n">tag</span> <span class="o">==</span> <span class="s">'author'</span><span class="p">:</span>
+                    <span class="n">author</span> <span class="o">=</span> <span class="n">subchild</span><span class="o">.</span><span class="n">text</span>
+                <span class="k">elif</span> <span class="n">subchild</span><span class="o">.</span><span class="n">tag</span> <span class="o">==</span> <span class="s">'date'</span><span class="p">:</span>
+                    <span class="n">date</span> <span class="o">=</span> <span class="n">subchild</span><span class="o">.</span><span class="n">text</span>
+                <span class="k">elif</span> <span class="n">subchild</span><span class="o">.</span><span class="n">tag</span> <span class="o">==</span> <span class="s">'msg'</span><span class="p">:</span>
+                    <span class="n">msg</span> <span class="o">=</span> <span class="n">subchild</span><span class="o">.</span><span class="n">text</span>
+                
+            <span class="n">date_re</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s">r'\d{4}-\d{2}-\d{2}'</span><span class="p">,</span> <span class="n">date</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">msg</span><span class="p">:</span>
+                <span class="n">msg_re</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s">r'.*】(.*)'</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">msg</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="k">if</span> <span class="n">msg_re</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">msg_re</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">author</span><span class="o">+</span><span class="s">','</span><span class="o">+</span> <span class="s">''</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">date_re</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'-'</span><span class="p">))</span><span class="o">+</span><span class="s">','</span><span class="o">+</span> <span class="n">msg_re</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>svn的<em>date</em>过于具体，这里只需要具体到哪一天即可。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="n">date</span><span class="o">&gt;</span><span class="mi">2017</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">13</span><span class="n">T14</span><span class="p">:</span><span class="mo">06</span><span class="p">:</span><span class="mf">33.374887</span><span class="n">Z</span><span class="o">&lt;/</span><span class="n">date</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<p>因此，做如下处理：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">date_re</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s">r'\d{4}-\d{2}-\d{2}'</span><span class="p">,</span> <span class="n">date</span><span class="p">)</span>
+<span class="n">date_text</span> <span class="o">=</span> <span class="s">''</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">date_re</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'-'</span><span class="p">))</span>
+</code></pre></div></div>
+
+<h4 id="p4v-to-csv">p4v to csv</h4>
+
+<p>从log信息中提取出每个changelist到一个数组里。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># content: p4v 导出的log信息
+change_list = content.split('Change')
+# t[0]: author &amp; date, t[1:]: msg
+t = change.split('\n')
+</code></pre></div></div>
+
+<p>从changelist中提取author。author的信息是在email的@的前面的字符串。</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Change 1 on 2017/12/14 by zhangsan@email.com</span>
+<span class="n">author</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">r' ([a-zA-Z0-9]+)@'</span><span class="p">,</span> <span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> 
+</code></pre></div></div>
+
+<p>从changelist中提取date。</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Change 1 on 2017/12/14 by zhangsan@email.com</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">r'(\d{4}/\d{2}/\d{2})'</span><span class="p">,</span> <span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</code></pre></div></div>
+
+<p>从changelist中提取msg</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">msg</span> <span class="o">=</span> <span class="s">''</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h3 id="图表化提交历史数据">图表化提交历史数据</h3>
+
+<p>提交次数的按月份分布如下图：
+<img src="/blog/assets/images/work_experience/my_commit.jpg" alt="my commits" title="my commits" /></p>
+
+<p>在两年里，提交了477次左右，占总提交的1.7%。
+<img src="/blog/assets/images/work_experience/commits.png" alt="commits" title="commits" /></p>
+
+<p>两年内的提交按功能的散列图如下：</p>
+
+<p><img src="/blog/assets/images/work_experience/time-line.png" alt="module time line" title="module time line" /></p>
+
+<p>由图可以清晰的看出，早期是从postprocess开始的，那时跟一个大大再搞一个real-time composition，大大负责整体框架的构建，大大指导我在
+框架里添砖加瓦，aa,dof，bokeh,lensflare,tone mappint, color grade, xdog等等相关的后期效果都倒腾了一番。期间，一个前辈丢了个shadow的锅给我们组，自己跑去专研地形渲染。
+大大随手一丢，就到我手上了，接下来就一接就接到现在了。sm,vsm，msm,sdsm, height-based ao…。接了shadow,也接了pointlihgt’s shadow。然后
+就接了directional light， spot light。最后，就是decal。这个功能很早就提出需求了，也在现有的版本里凑出了功能，产品化时觉得耦合度过高，还有
+当时还有其他的比较紧急的任务就耽搁了一段时间。接下来，就是把耦合度降低，单独分出来，功能提交了也验证。一入码农，随处bug。代码在<a href="https://github.com/jamelouis/python-practice/blob/master/history/works.py">github</a>。</p>
+
+<h3 id="references">References</h3>
+
+<ul>
+  <li><a href="https://en.wikipedia.org/wiki/Comma-separated_values">Comma-separated values</a></li>
+  <li><a href="https://github.com/jamelouis/python-practice/blob/master/history/works.py">python code - github</a></li>
+</ul>
+
+
+  </div><a class="u-url" href="/blog/2017/12/work-experience.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/blog/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Blog</li><li><a class="u-email" href="mailto:jamelouis2015@gmail.com">jamelouis2015@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/jamelouis"><svg class="svg-icon"><use xlink:href="/blog/assets/minima-social-icons.svg#github"></use></svg> <span class="username">jamelouis</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Jame Louis&#39;s Blog。</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

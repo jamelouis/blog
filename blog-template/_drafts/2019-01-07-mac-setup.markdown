@@ -1,0 +1,13 @@
+---
+layout: post
+title:  Mac Setup
+date:   2018-11-20 11:03:31 +0800
+categories: misc
+---
+
+```shell
+brew cask install \
+    alfred \
+    flux \
+    spectacle
+```

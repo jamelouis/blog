@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>浅析UE4中的EyeAdaption | Blog</title>
+<meta name="generator" content="Jekyll v3.6.3" />
+<meta property="og:title" content="浅析UE4中的EyeAdaption" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="UE4是采用基于Histogram的方法来计算" />
+<meta property="og:description" content="UE4是采用基于Histogram的方法来计算" />
+<link rel="canonical" href="http://localhost:4000/blog/2017/11/%E6%B5%85%E6%9E%90UE4%E4%B8%AD%E7%9A%84EyeAdaption.html" />
+<meta property="og:url" content="http://localhost:4000/blog/2017/11/%E6%B5%85%E6%9E%90UE4%E4%B8%AD%E7%9A%84EyeAdaption.html" />
+<meta property="og:site_name" content="Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-11-14T22:03:31+08:00" />
+<script type="application/ld+json">
+{"description":"UE4是采用基于Histogram的方法来计算","@type":"BlogPosting","url":"http://localhost:4000/blog/2017/11/%E6%B5%85%E6%9E%90UE4%E4%B8%AD%E7%9A%84EyeAdaption.html","headline":"浅析UE4中的EyeAdaption","dateModified":"2017-11-14T22:03:31+08:00","datePublished":"2017-11-14T22:03:31+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog/2017/11/%E6%B5%85%E6%9E%90UE4%E4%B8%AD%E7%9A%84EyeAdaption.html"},"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/blog/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/blog/feed.xml" title="Blog" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/blog/">Blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/blog/about/">About</a><a class="page-link" href="/blog/Archive/">Archive</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">浅析UE4中的EyeAdaption</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2017-11-14T22:03:31+08:00" itemprop="datePublished">Nov 14, 2017
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h2 id="eyeadaptation-in-ue4">EyeAdaptation In UE4</h2>
+
+<p><a href="https://docs.unrealengine.com/latest/INT/Engine/Rendering/PostProcessEffects/AutomaticExposure/">Eye Adaptation - UE4 Documentation</a>中，UE4是采用基于Histogram的方法来计算画面的平均中灰值的，并通过<em>LowPercent</em>和<em>HighPercent</em>来过滤一些极黑或者极亮的
+像素块。通过<em>Min Brightness</em>和<em>Max Brightness</em>来限制中灰值<em>L</em>的取值范围。<em>Speed Up</em>和<em>Speed Down</em>来控制明到暗和暗到明的过度变化。并允许通过<em>Auto Exposure Bias</em>
+来曝光补偿。</p>
+
+<h4 id="auto-exposure-mathematic-model">Auto Exposure Mathematic Model</h4>
+
+<ul>
+  <li>
+    <p><img src="/blog/assets/images/eye_adaptation/5.svg" alt="Auto Exposure" title="Exposure" /></p>
+  </li>
+  <li>
+    <p><img src="/blog/assets/images/eye_adaptation/4.svg" alt="Exposure Calculation" title="Exposure Calculation" /></p>
+  </li>
+  <li>
+    <p><img src="/blog/assets/images/eye_adaptation/3.svg" alt="cache old luminance" title="Cache Old Luminance" /></p>
+  </li>
+  <li>
+    <p><img src="/blog/assets/images/eye_adaptation/2.svg" alt="Temporal Adaptation" title="Temporal Adaptation" /></p>
+  </li>
+  <li>
+    <p><img src="/blog/assets/images/eye_adaptation/6.svg" alt="Average Luminance" title="Average Luminance" /></p>
+  </li>
+</ul>
+
+<p>在[EyeAdaption - Overview]中，我们总结了EyeAdaptation的Mathematic Model。通过阅读UE4的Source Code，整体的EyeAdaption的过程大致一样，
+只是在计算平均亮度值之一块有较大的差异。</p>
+
+<h4 id="auto-exposure-in-ue4">Auto Exposure in UE4</h4>
+
+<ul>
+  <li>
+    <p><img src="/blog/assets/images/eye_adaptation/5.svg" alt="Auto Exposure" title="Exposure" /></p>
+  </li>
+  <li>
+    <p><img src="/blog/assets/images/eye_adaptation/7.svg" alt="Exposure Calculation" title="Exposure Calculation" /></p>
+  </li>
+  <li>
+    <p><img src="/blog/assets/images/eye_adaptation/3.svg" alt="cache old luminance" title="Cache Old Luminance" /></p>
+  </li>
+  <li><img src="/blog/assets/images/eye_adaptation/11.svg" alt="Temporal Adaptation" title="Temporal Adaptation" /></li>
+  <li><img src="/blog/assets/images/eye_adaptation/10.svg" alt="Temporal Adaptation" title="Temporal Adaptation" /></li>
+  <li><img src="/blog/assets/images/eye_adaptation/9.svg" alt="Temporal Adaptation" title="Temporal Adaptation" /></li>
+  <li>
+    <p><img src="/blog/assets/images/eye_adaptation/8.svg" alt="Temporal Adaptation" title="Temporal Adaptation" /></p>
+  </li>
+  <li><img src="/blog/assets/images/eye_adaptation/12.svg" alt="Average Luminance" title="Average Luminance" /></li>
+</ul>
+
+<p>在UE4中，计算平均中灰值的方式是基于histogram的，并且多了个曝光补偿因子来控制最终的曝光值。</p>
+
+<h2 id="浅析ue4中的eyeadaption">浅析UE4中的EyeAdaption</h2>
+
+<p>UE4的EyeAdaption的代码基本上是按照Auto Exposure in UE4编写。因此，接下来只是单纯的把对应的mathematic equation和相关的Code放到一起，
+并简单的在UE4的Code中简单注释公式和代码相关变量的关系。</p>
+
+<h4 id="eye-adaptation参数">Eye Adaptation参数</h4>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/// PostProcessHistogramCommon.usf
+
+// Lmin: EyeAdaptationMin, LMax: EyeAdaptationMax
+// [0] .x:ExposureLowPercent/100, .y:EyeAdaptationHighPercent/100, .z:EyeAdaptationMin, .w:EyeAdaptationMax
+
+// temporal adaptation's *delta time*: DeltaWorldTime, temporal adaptation's *speed*: EyeAdaptionSpeedUp/Down
+// [1] .x:exp2(ExposureOffset), .y:DeltaWorldTime, .zw: EyeAdaptionSpeedUp/Down
+
+// 基于Histogram的Average Luminance的参数
+// [2] .x:Histogram multiply, .y:Histogram add, .z:HistogramMinIntensity w:unused
+float4 EyeAdaptationParams[3];
+</code></pre></div></div>
+
+<h4 id="eye-adaptation">Eye Adaptation</h4>
+
+<p><img src="/blog/assets/images/eye_adaptation/5.svg" alt="Auto Exposure" title="Exposure" /></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/// PostProcessTonemap.usf
+
+// Exposure存储在EyeAdaptation纹理里，vEyeAdapationVS.x即Exposure
+vEyeAdapationVS.x = EyeAdaptation.Load(int3(0, 0, 0)).r;
+OutColor = TonemapCommonPS(UV, vEyeAdapationVS, GrainUV, FringeUV, FullViewUV, SvPosition);
+
+// TonemapCommonPS
+float ExposureScale = InExposureScaleVignette.x;
+...
+// LinearColor, 即Color(i,j)
+LinearColor *= ExposureScale;
+...
+
+</code></pre></div></div>
+
+<p>从EyeAdaptation纹理中得到当前的<em>Exposure</em>值，并把当前的<em>LinearColor</em>乘以该<em>Exposure</em>值来调整画面的明暗。</p>
+
+<h4 id="temporal-adaptation">Temporal Adaptation</h4>
+
+<p><img src="/blog/assets/images/eye_adaptation/11.svg" alt="Temporal Adaptation" title="Temporal Adaptation" /></p>
+
+<p><img src="/blog/assets/images/eye_adaptation/10.svg" alt="Temporal Adaptation" title="Temporal Adaptation" /></p>
+
+<p><img src="/blog/assets/images/eye_adaptation/9.svg" alt="Temporal Adaptation" title="Temporal Adaptation" /></p>
+
+<p><img src="/blog/assets/images/eye_adaptation/8.svg" alt="Temporal Adaptation" title="Temporal Adaptation" /></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/// PostProcessEyeAdaptation.usf
+
+float ComputeEyeAdaptation(float OldExposure, float TargetExposure, float FrameTime)
+{
+    float Diff = TargetExposure - OldExposure;
+    
+    // dark adaption &amp; light adaption 的 *speed*参数
+    const float EyeAdaptionSpeedUp   = EyeAdaptationParams[1].z;
+    const float EyeAdaptionSpeedDown = EyeAdaptationParams[1].w;
+    
+    // Diff的正负表示从明到暗或者暗到明的过程
+    float AdaptionSpeed = (Diff &gt; 0) ? EyeAdaptionSpeedUp : EyeAdaptionSpeedDown;
+    
+    float Factor = 1.0f - exp2(-FrameTime * AdaptionSpeed);
+    
+    // Temporal Exposure *L*: OldExposure + Diff * Factor
+    // clamp(L, LMin, LMax), LMin：EyeAdaptationParams[0].z， LMax: EyeAdaptationParams[0].w
+    return clamp(OldExposure + Diff * Factor, EyeAdaptationParams[0].z, EyeAdaptationParams[0].w);
+}
+</code></pre></div></div>
+
+<h4 id="exposure-calculation">Exposure Calculation</h4>
+
+<p><img src="/blog/assets/images/eye_adaptation/7.svg" alt="Exposure Calculation" title="Exposure Calculation" /></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/// PostProcessEyeAdaptation.usf
+
+float2 MainEyeAdaptationCommon()
+{
+    float2 OutColor = 0;
+    // 曝光补偿
+    float ExposureOffsetMultipler = EyeAdaptationParams[1].x;
+    
+    // 从Histogram中计算画面的中灰值
+    float TargetExposure = ComputeEyeAdaptationExposure(PostprocessInput0);
+    
+    // Lold
+    float OldExposureScale = PostprocessInput0.Load(int3(0, 1, 0)).r;
+    float OldExposure = ExposureOffsetMultipler / ( OldExposureScale != 0 ? OldExposureScale : 1.0f );
+    
+    // delta time in temporal adaptation
+    float FrameTime = EyeAdaptationParams[1].y;
+    
+    // eye adaptation changes over time
+    float SmoothedExposure = ComputeEyeAdaptation(OldExposure, TargetExposure, FrameTime);
+    
+    // KeyValue = 1.0f, smoothedExposure = clamp(L, Lmin, Lmax)
+    float SmoothedExposureScale = 1.0f / max(0.0001f, SmoothedExposure);
+    float TargetExposureScale =   1.0f / max(0.0001f, TargetExposure);
+    
+    // Exposure
+    OutColor.r = ExposureOffsetMultipler * SmoothedExposureScale;
+    OutColor.g = ExposureOffsetMultipler * TargetExposureScale;
+    
+    return OutColor;
+}
+</code></pre></div></div>
+
+<p><em>1.0/max(0.0001f,SmoothedExposure)</em>避免除以一个很小的数值。</p>
+
+<h4 id="average-luminance">Average Luminance</h4>
+
+<p><img src="/blog/assets/images/eye_adaptation/12.svg" alt="Average Luminance" title="Average Luminance" /></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/// PostProcessHistogramCommon.usf
+
+float ComputeEyeAdaptationExposure(Texture2D HistogramTexture)
+{
+    float HistogramSum = ComputeHistogramSum(HistogramTexture);
+    // low percent: EyeAdaptationParams[0].x, high percent: EyeAdaptationParams[0].y
+    float UnclampedAdaptedLuminance = ComputeAverageLuminaneWithoutOutlier(HistogramTexture, HistogramSum * EyeAdaptationParams[0].x, HistogramSum * EyeAdaptationParams[0].y);
+    // Lmin: EyeAdaptationParams[0].z, Lmax: EyeAdaptationParams[0].w
+    float ClampedAdaptedLuminance = clamp(UnclampedAdaptedLuminance, EyeAdaptationParams[0].z, EyeAdaptationParams[0].w);
+    
+    return ClampedAdaptedLuminance;
+}
+</code></pre></div></div>
+
+<p>可以这么理解，把画面的所有像素放到一个数组里，根据像素的Lum值大小排序，那么<em>HistogramSum</em>就是该数组的大小，[histogramSum * EyeAdaptationParams[0].x, HistogramSum * EyeAdaptationParams[0].y]表示对
+画面平均亮度值有贡献的区域。即平均亮度值是该区域的亮度和除以区域所包含的像素个数。</p>
+
+<p>基于Histogram的方法的Average Luminance算法涉及的内容比较多，在这里只是一带而过。</p>
+
+<h2 id="小结">小结</h2>
+
+<p><strong>EyeAdaptation关键点就是如何计算画面的平均亮度值。</strong></p>
+
+<p><a href="with code in blog">Average Luminance Calculation Using a Compute Shader</a>中，先将画面转到lum空间，通过Dx的Mimap或者Compute Shader计算出平均亮度值。
+UE4也是通过Compute Shader计算出画面的Histogram，通过Histogram计算出平均亮度值。</p>
+
+<h2 id="reference">Reference</h2>
+
+<ul>
+  <li><a href="https://docs.unrealengine.com/latest/INT/Engine/Rendering/PostProcessEffects/AutomaticExposure/">Eye Adpation(Auto-Exposure)</a></li>
+  <li><a href="https://knarkowicz.wordpress.com/2016/01/09/automatic-exposure/">Automatic exposure</a></li>
+  <li><a href="https://mynameismjp.wordpress.com/2011/08/10/average-luminance-compute-shader/">Average Luminance Calculation Using a Compute Shader</a></li>
+  <li>PostProcessEyeAdaptation.usf</li>
+  <li>PostProcessTonemap.usf</li>
+  <li>PostProcessHistogramCommon.usf</li>
+</ul>
+
+
+  </div><a class="u-url" href="/blog/2017/11/%E6%B5%85%E6%9E%90UE4%E4%B8%AD%E7%9A%84EyeAdaption.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/blog/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Blog</li><li><a class="u-email" href="mailto:jamelouis2015@gmail.com">jamelouis2015@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/jamelouis"><svg class="svg-icon"><use xlink:href="/blog/assets/minima-social-icons.svg#github"></use></svg> <span class="username">jamelouis</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Jame Louis&#39;s Blog。</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

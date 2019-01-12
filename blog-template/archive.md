@@ -1,6 +1,6 @@
 ---
 layout: archive-home
 title: Archive
-permalink: /Archive/
+permalink: /archive/
 ---
 
